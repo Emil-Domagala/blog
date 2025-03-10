@@ -2,7 +2,7 @@ package backend.blog.domain.dto;
 
 import java.util.List;
 
-import org.springframework.validation.FieldError;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +22,7 @@ public class ApiErrorResponse {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class  FieldError{
+    public static class FieldError{
         private String field;
         private String message;
     } {
