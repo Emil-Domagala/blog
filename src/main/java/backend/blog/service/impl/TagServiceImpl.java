@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import backend.blog.domain.entities.Tag;
 import backend.blog.repo.TagRepo;
 import backend.blog.service.TagService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,12 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> getTags() {
         return tagRepo.findAllWithPostCount();
+    }
+
+    @Override
+    public Tag getTagById(UUID id) {
+        return tagRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Tag not found with id: " + id));
     }
 
     @Transactional

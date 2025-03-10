@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import backend.blog.domain.entities.Category;
 import backend.blog.repo.CategoryRepo;
 import backend.blog.service.CategoryService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -42,6 +43,12 @@ public class CategoryServiceImpl implements CategoryService {
             }
             categoryRepo.deleteById(id);
         }
+    }
+
+    @Override
+    public Category getCategoryById(UUID id) {
+        return categoryRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
     }
 
 }

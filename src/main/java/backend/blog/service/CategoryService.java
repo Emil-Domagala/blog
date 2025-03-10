@@ -8,7 +8,10 @@ import backend.blog.domain.entities.Category;
 public interface CategoryService {
     List<Category> getCategories();
 
+    Category getCategoryById(UUID id);
+
     Category createCategory(Category category);
 
     void deleteCategory(UUID id);
+
 }
