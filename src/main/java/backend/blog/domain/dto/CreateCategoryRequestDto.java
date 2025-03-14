@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateCategoryRequest {
+public class CreateCategoryRequestDto {
     
     @Size(min=2,max=50,message = "Category name must be beetween {min} and {max} characters")
     @NotBlank(message = "Category name is required")

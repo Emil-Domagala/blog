@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import backend.blog.domain.entities.Category;
 import backend.blog.domain.dto.CategoryDto;
-import backend.blog.domain.dto.CreateCategoryRequest;
+import backend.blog.domain.dto.CreateCategoryRequestDto;
 import backend.blog.mapper.CategoryMapper;
 import backend.blog.service.CategoryService;
 import jakarta.validation.Valid;
@@ -41,11 +42,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CreateCategoryRequest createCategoryRequest) {
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CreateCategoryRequestDto createCategoryRequest) {
         Category categoryToCreate = categoryMapper.toEntity(createCategoryRequest);
         Category savedCategory = categoryService.createCategory(categoryToCreate);
         return new ResponseEntity<>(categoryMapper.toDto(savedCategory), HttpStatus.CREATED);
     }
+
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable UUID id) {

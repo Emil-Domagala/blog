@@ -13,6 +13,7 @@ public interface TagService {
     Tag getTagById(UUID id);
 
     List<Tag> createTags(Set<String> tagNames);
+    List<Tag> getTagsByIds(Set<UUID> ids);
 
     void deleteTag(UUID id);
 
